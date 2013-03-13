@@ -8,19 +8,13 @@ import java.awt.*;
  */
 public class Window extends JFrame {
 
-    private Container contentContainer;
-
     public Window(String title, Dimension dimension) throws HeadlessException {
-        super(title);
+        setTitle(title);
         setSize(dimension);
         setResizable(false);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        contentContainer = getContentPane();
-        contentContainer.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
     }
 
-    public Container getContentContainer() {
-        return this.contentContainer;
-    }
 }
