@@ -2,7 +2,7 @@ package com.cozycoding.crea1;
 
 import com.cozycoding.crea1.shapes.RectangleBlock;
 
-import java.awt.*;
+import java.awt.Dimension;
 
 /**
  * Tetris

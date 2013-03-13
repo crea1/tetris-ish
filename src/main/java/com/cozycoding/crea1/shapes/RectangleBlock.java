@@ -1,6 +1,7 @@
 package com.cozycoding.crea1.shapes;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 
 /**
