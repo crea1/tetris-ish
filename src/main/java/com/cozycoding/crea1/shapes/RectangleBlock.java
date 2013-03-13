@@ -12,8 +12,8 @@ import java.awt.geom.RoundRectangle2D;
 
 public class RectangleBlock implements TetrisShape {
     private static final Color color = new Color(0xFF0056);
-    private final Double width = (double) 20;
-    private final Double height = (double) 80;
+    private final double width = (double) 20;
+    private final double height = (double) 80;
     private double x = 0;
     private double y = 0;
     private double rotation = 0;
@@ -68,12 +68,12 @@ public class RectangleBlock implements TetrisShape {
     }
 
     @Override
-    public Double getWidth() {
+    public double getWidth() {
         return width;
     }
 
     @Override
-    public Double getHeight() {
+    public double getHeight() {
         return height;
     }
 

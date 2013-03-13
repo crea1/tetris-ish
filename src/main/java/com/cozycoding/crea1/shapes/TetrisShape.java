@@ -1,6 +1,7 @@
 package com.cozycoding.crea1.shapes;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Shape;
 
 /**
  * @author Marius Kristensen
@@ -21,9 +22,9 @@ public abstract interface TetrisShape {
 
     void setY(double posY);
 
-    Double getWidth();
+    double getWidth();
 
-    Double getHeight();
+    double getHeight();
 
     void setRotation(double rotation);
 }
