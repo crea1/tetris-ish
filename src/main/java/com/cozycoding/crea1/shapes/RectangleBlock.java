@@ -14,11 +14,14 @@ public class RectangleBlock implements TetrisShape {
     private static final Color color = new Color(0xFF0056);
     private final Double width = (double) 20;
     private final Double height = (double) 80;
-    private Double posX = (double) 0;
-    private Double posY = (double) 0;
+    private double posX = 0;
+    private double posY = 0;
+    private double rotation = 0;
     private RoundRectangle2D.Double rectangle;
 
-    public RectangleBlock() {
+    public RectangleBlock(double posX, double posY) {
+        this.posX = posX;
+        this.posY = posY;
         rectangle = new RoundRectangle2D.Double(posX, posY, width, height, 0, 0);
     }
 
@@ -34,6 +37,11 @@ public class RectangleBlock implements TetrisShape {
     }
 
     @Override
+    public double getRotation() {
+        return rotation;
+    }
+
+    @Override
     public void onRightKeyPressedEvent() {
         posX += 5;
     }
@@ -45,11 +53,43 @@ public class RectangleBlock implements TetrisShape {
 
     @Override
     public void onUpKeyPressedEvent() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        rotation += 90;
     }
 
     @Override
     public void onDownKeyPressedEvent() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        rotation -= 90;
     }
+
+
+    @Override
+    public double getPosX() {
+        return posX;
+    }
+
+    @Override
+    public void setPosX(double posX) {
+        this.posX = posX;
+    }
+
+    @Override
+    public double getPosY() {
+        return posY;
+    }
+
+    @Override
+    public void setPosY(double posY) {
+        this.posY = posY;
+    }
+
+    @Override
+    public Double getWidth() {
+        return width;
+    }
+
+    @Override
+    public Double getHeight() {
+        return height;
+    }
+
 }

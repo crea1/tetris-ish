@@ -18,4 +18,18 @@ public abstract interface TetrisShape {
     Shape getShape();
 
     Color getColor();
+
+    double getRotation();
+
+    double getPosX();
+
+    void setPosX(double posX);
+
+    double getPosY();
+
+    void setPosY(double posY);
+
+    Double getWidth();
+
+    Double getHeight();
 }
