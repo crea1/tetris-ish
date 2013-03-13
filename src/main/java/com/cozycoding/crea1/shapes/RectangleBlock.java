@@ -14,20 +14,20 @@ public class RectangleBlock implements TetrisShape {
     private static final Color color = new Color(0xFF0056);
     private final Double width = (double) 20;
     private final Double height = (double) 80;
-    private double posX = 0;
-    private double posY = 0;
+    private double x = 0;
+    private double y = 0;
     private double rotation = 0;
     private RoundRectangle2D.Double rectangle;
 
-    public RectangleBlock(double posX, double posY) {
-        this.posX = posX;
-        this.posY = posY;
-        rectangle = new RoundRectangle2D.Double(posX, posY, width, height, 0, 0);
+    public RectangleBlock(double x, double y) {
+        this.x = x;
+        this.y = y;
+        rectangle = new RoundRectangle2D.Double(x, y, width, height, 0, 0);
     }
 
     @Override
     public Shape getShape() {
-        rectangle = new RoundRectangle2D.Double(posX, posY, width, height, 0, 0);
+        rectangle = new RoundRectangle2D.Double(x, y, width, height, 0, 0);
         return rectangle;
     }
 
@@ -42,44 +42,29 @@ public class RectangleBlock implements TetrisShape {
     }
 
     @Override
-    public void onRightKeyPressedEvent() {
-        posX += 5;
-    }
-
-    @Override
-    public void onLeftKeyPressedEvent() {
-        posX -= 5;
-    }
-
-    @Override
-    public void onUpKeyPressedEvent() {
-        rotation += 90;
-    }
-
-    @Override
-    public void onDownKeyPressedEvent() {
-        rotation -= 90;
+    public void setRotation(double rotation) {
+        this.rotation = rotation;
     }
 
 
     @Override
-    public double getPosX() {
-        return posX;
+    public double getX() {
+        return x;
     }
 
     @Override
-    public void setPosX(double posX) {
-        this.posX = posX;
+    public void setX(double x) {
+        this.x = x;
     }
 
     @Override
-    public double getPosY() {
-        return posY;
+    public double getY() {
+        return y;
     }
 
     @Override
-    public void setPosY(double posY) {
-        this.posY = posY;
+    public void setY(double y) {
+        this.y = y;
     }
 
     @Override

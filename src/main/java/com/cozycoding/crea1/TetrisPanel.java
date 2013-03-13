@@ -29,8 +29,8 @@ public class TetrisPanel extends JPanel {
         clear(g);
         Graphics2D graphics2D = (Graphics2D) g;
         Double width = activeTetrisShape.getWidth();
-        double posX = activeTetrisShape.getPosX();
-        double posY = activeTetrisShape.getPosY();
+        double posX = activeTetrisShape.getX();
+        double posY = activeTetrisShape.getY();
         Double height = activeTetrisShape.getHeight();
         graphics2D.rotate(Math.toRadians(activeTetrisShape.getRotation()), posX + width/2, posY + height/2);
         graphics2D.setColor(activeTetrisShape.getColor());
@@ -57,16 +57,16 @@ public class TetrisPanel extends JPanel {
 
             switch (keyEvent.getKeyCode()) {
                 case 37:
-                    activeTetrisShape.onLeftKeyPressedEvent();
+                    activeTetrisShape.setX(activeTetrisShape.getX() - 20);
                     break;
                 case 38:
-                    activeTetrisShape.onUpKeyPressedEvent();
+                    activeTetrisShape.setRotation(activeTetrisShape.getRotation() + 90);
                     break;
                 case 39:
-                    activeTetrisShape.onRightKeyPressedEvent();
+                    activeTetrisShape.setX(activeTetrisShape.getX() + 20);
                     break;
                 case 40:
-                    activeTetrisShape.onDownKeyPressedEvent();
+                    activeTetrisShape.setY(activeTetrisShape.getY() + 20);
                     break;
             }
             repaint();

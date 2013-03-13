@@ -7,29 +7,23 @@ import java.awt.*;
  */
 public abstract interface TetrisShape {
 
-    void onRightKeyPressedEvent();
-
-    void onLeftKeyPressedEvent();
-
-    void onUpKeyPressedEvent();
-
-    void onDownKeyPressedEvent();
-
     Shape getShape();
 
     Color getColor();
 
     double getRotation();
 
-    double getPosX();
+    double getX();
 
-    void setPosX(double posX);
+    void setX(double posX);
 
-    double getPosY();
+    double getY();
 
-    void setPosY(double posY);
+    void setY(double posY);
 
     Double getWidth();
 
     Double getHeight();
+
+    void setRotation(double rotation);
 }
