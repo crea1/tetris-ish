@@ -99,6 +99,9 @@ public class RectangleBlock implements TetrisShape {
 
     @Override
     public double getWidth() {
-        return width;
+        if (sideWays) {
+            return longSide;
+        }
+        return shortSide;
     }
 }

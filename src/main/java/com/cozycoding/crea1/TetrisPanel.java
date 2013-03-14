@@ -57,10 +57,21 @@ public class TetrisPanel extends JPanel {
     }
 
     public boolean isAtBottom() {
-        //System.out.println("activeTetrisShape.getY() = " + activeTetrisShape.getY() + " activeTetrisShape.getLongSide() = " + activeTetrisShape.getHeight());
-
         double v = activeTetrisShape.getY() + activeTetrisShape.getHeight();
         return (v == height);
+    }
+
+    public boolean hasBlockUnder() {
+        double lowerY = activeTetrisShape.getY() + activeTetrisShape.getHeight();
+        double x = activeTetrisShape.getX();
+        double xx = activeTetrisShape.getX() + activeTetrisShape.getWidth();
+        for (TetrisShape placedShape : placedShapes) {
+            System.out.println("x = " + x + " xx = " + xx + " "+placedShape.getX()+", "+placedShape.getY());
+            if (lowerY == placedShape.getY() && (x >= placedShape.getX() && x <=  placedShape.getX()+placedShape.getWidth()-1) ) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -75,7 +86,7 @@ public class TetrisPanel extends JPanel {
 
         @Override
         public void keyPressed(KeyEvent keyEvent) {
-            if (!isAtBottom()) {
+            if (!isAtBottom() && !hasBlockUnder()) {
                 int blockSize = 20;
                 switch (keyEvent.getKeyCode()) {
                     case 37:
