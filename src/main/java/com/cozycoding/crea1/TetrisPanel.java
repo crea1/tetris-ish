@@ -76,18 +76,19 @@ public class TetrisPanel extends JPanel {
         @Override
         public void keyPressed(KeyEvent keyEvent) {
             if (!isAtBottom()) {
+                int blockSize = 20;
                 switch (keyEvent.getKeyCode()) {
                     case 37:
-                        activeTetrisShape.setX(activeTetrisShape.getX() - 20);
+                        activeTetrisShape.setX(activeTetrisShape.getX() - blockSize);
                         break;
                     case 38:
                         activeTetrisShape = activeTetrisShape.rotateShape(activeTetrisShape);
                         break;
                     case 39:
-                        activeTetrisShape.setX(activeTetrisShape.getX() + 20);
+                        activeTetrisShape.setX(activeTetrisShape.getX() + blockSize);
                         break;
                     case 40:
-                        activeTetrisShape.setY(activeTetrisShape.getY() + 20);
+                        activeTetrisShape.setY(activeTetrisShape.getY() + blockSize);
                         break;
                 }
             } else {
