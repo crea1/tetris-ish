@@ -17,7 +17,7 @@ public class Tetris {
 
     public static void main(String[] args) {
         Window window = new Window(title, new Dimension(windowWidth, windowHeight));
-        RectangleBlock rectangleBlock = new RectangleBlock(160, 0);
+        RectangleBlock rectangleBlock = new RectangleBlock(160, 0, 0, false);
         final TetrisPanel tetrisPanel = new TetrisPanel(new Dimension(windowWidth, windowHeight), rectangleBlock);
         window.add(tetrisPanel);
     }

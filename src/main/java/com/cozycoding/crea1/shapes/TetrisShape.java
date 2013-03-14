@@ -10,6 +10,8 @@ public abstract interface TetrisShape {
 
     Shape getShape();
 
+    TetrisShape rotateShape(TetrisShape rectangleBlock);
+
     Color getColor();
 
     double getRotation();
@@ -25,6 +27,4 @@ public abstract interface TetrisShape {
     double getWidth();
 
     double getHeight();
-
-    void setRotation(double rotation);
 }
