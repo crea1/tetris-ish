@@ -52,8 +52,8 @@ public class GameRulesTest {
     @Test
     public void testPlaceSquareOnGameBoard() throws Exception {
         SquareBlock squareBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(squareBlock);
         Cell[][] gameBoard = gameRules.getGameBoard();
-        gameRules.placeBlockOnGameBoard(gameBoard, squareBlock);
         assertTrue(gameBoard[0][0].isFilled());
         assertTrue(gameBoard[0][1].isFilled());
         assertTrue(gameBoard[1][0].isFilled());
@@ -63,8 +63,8 @@ public class GameRulesTest {
     @Test
     public void testPlaceTriangleBlock() throws Exception {
         TriangleBlock triangleBlock = new TriangleBlock();
+        gameRules.placeBlockOnGameBoard(triangleBlock);
         Cell[][] gameBoard = gameRules.getGameBoard();
-        gameRules.placeBlockOnGameBoard(gameBoard, triangleBlock);
         assertFalse(gameBoard[0][0].isFilled()); assertTrue(gameBoard[0][1].isFilled()); assertFalse(gameBoard[0][2].isFilled());
         assertTrue(gameBoard[1][0].isFilled()); assertTrue(gameBoard[1][1].isFilled()); assertTrue(gameBoard[1][2].isFilled());
     }
@@ -72,10 +72,17 @@ public class GameRulesTest {
     @Test
     public void testMoveShapeDown() throws Exception {
         SquareBlock squareBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(squareBlock);
+        gameRules.moveActiveBlockDown();
         Cell[][] gameBoard = gameRules.getGameBoard();
-        gameRules.placeBlockOnGameBoard(gameBoard, squareBlock);
-        //gameBoard = gameRules.moveBlockDown(gameBoard, squareBlock);
         printGameBoard(gameBoard);
+
+        assertFalse(gameBoard[0][0].isFilled());
+        assertFalse(gameBoard[0][1].isFilled());
+        assertTrue(gameBoard[1][0].isFilled());
+        assertTrue(gameBoard[1][1].isFilled());
+        assertTrue(gameBoard[2][0].isFilled());
+        assertTrue(gameBoard[2][1].isFilled());
 
     }
 

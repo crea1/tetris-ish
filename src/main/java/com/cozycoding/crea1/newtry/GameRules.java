@@ -1,6 +1,7 @@
 package com.cozycoding.crea1.newtry;
 
 import com.cozycoding.crea1.newtry.Blocks.Cell;
+import com.cozycoding.crea1.newtry.Blocks.SquareBlock;
 import com.cozycoding.crea1.newtry.Blocks.TetrisBlock;
 
 /**
@@ -11,6 +12,7 @@ public class GameRules {
     protected static final int noOfRows = 8;
 
     private Cell[][] gameBoard = new Cell[noOfRows][];
+    private TetrisBlock activeBlock;
 
     public GameRules() {
         fillGameBoardWithEmptyRows(gameBoard);
@@ -41,8 +43,9 @@ public class GameRules {
         return cells;
     }
 
-    public void placeBlockOnGameBoard(Cell[][] gameBoard, TetrisBlock tetrisBlock) {
-        Cell[][] gameBoardWithPlacedShape = gameBoard;
+    public void placeBlockOnGameBoard(TetrisBlock tetrisBlock) {
+        this.activeBlock = tetrisBlock;
+        Cell[][] gameBoardWithPlacedShape = this.gameBoard;
         Cell[][] shape = tetrisBlock.getShape();
         for (int row = 0; row < shape.length; row++) {
             Cell[] rowCells = shape[row];
@@ -51,7 +54,15 @@ public class GameRules {
                 gameBoardWithPlacedShape[row][column] = rowCells[column];
             }
         }
-        this.gameBoard =  gameBoardWithPlacedShape;
+        this.gameBoard = gameBoardWithPlacedShape;
+    }
+
+    public void moveActiveBlockDown() {
+        Cell[][] gameBoardWithPlacedShape = this.gameBoard;
+        Cell[][] shape = activeBlock.getShape();
+
+
+
     }
 
     public Cell[][] getGameBoard() {
