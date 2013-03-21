@@ -5,6 +5,8 @@ package com.cozycoding.crea1.newtry.Blocks;
  */
 public class Cell {
     private boolean isFilled;
+    private int x;
+    private int y;
 
     public Cell(boolean filled) {
         isFilled = filled;
@@ -18,5 +20,19 @@ public class Cell {
         isFilled = filled;
     }
 
+    public int getX() {
+        return x;
+    }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 }

@@ -2,6 +2,7 @@ package com.cozycoding.crea1.newtry;
 
 import com.cozycoding.crea1.newtry.Blocks.Cell;
 import com.cozycoding.crea1.newtry.Blocks.SquareBlock;
+import com.cozycoding.crea1.newtry.Blocks.TetrisBlock;
 import com.cozycoding.crea1.newtry.Blocks.TriangleBlock;
 import org.junit.Before;
 import org.junit.Test;
@@ -67,6 +68,17 @@ public class GameRulesTest {
         Cell[][] gameBoard = gameRules.getGameBoard();
         assertFalse(gameBoard[0][0].isFilled()); assertTrue(gameBoard[0][1].isFilled()); assertFalse(gameBoard[0][2].isFilled());
         assertTrue(gameBoard[1][0].isFilled()); assertTrue(gameBoard[1][1].isFilled()); assertTrue(gameBoard[1][2].isFilled());
+    }
+
+    @Test
+    public void testWhenPlacedSquareCellsShouldHaveCorrectXandY() throws Exception {
+        SquareBlock squareBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(squareBlock);
+        Cell[][] gameBoard = gameRules.getGameBoard();
+        TetrisBlock activeBlock = gameRules.getActiveBlock();
+        Cell[][] activeBlockShape = activeBlock.getShape();
+        assertEquals(0, activeBlockShape[0][0].getX());
+        assertEquals(0, activeBlockShape[0][0].getY());
     }
 
     @Test
