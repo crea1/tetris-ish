@@ -4,12 +4,15 @@ import com.cozycoding.crea1.newtry.Blocks.Cell;
 import com.cozycoding.crea1.newtry.Blocks.SquareBlock;
 import com.cozycoding.crea1.newtry.Blocks.TetrisBlock;
 
+import java.util.List;
+
 /**
  * @author Marius Kristensen
  */
 public class GameRules {
-    private static final int noOfColumns = 8;
-    protected static final int noOfRows = 8;
+    // |0|1|2|3|4|5|6|7|8|9
+    protected static final int noOfColumns = 10;
+    protected static final int noOfRows = 18;
 
     private Cell[][] gameBoard = new Cell[noOfRows][];
     private TetrisBlock activeBlock;
@@ -21,7 +24,7 @@ public class GameRules {
     public void fillGameBoardWithEmptyRows(Cell[][] gameBoard) {
         Cell[][] board = new Cell[gameBoard.length][];
         for (int row = 0; row < gameBoard.length; row++) {
-            board[row] = fillCellRowWithEmptyCells(new Cell[noOfColumns]);
+            board[row] = fillCellRowWithEmptyCells(new Cell[noOfColumns], row);
         }
         this.gameBoard = board;
     }
@@ -35,9 +38,9 @@ public class GameRules {
         return true;
     }
 
-    public Cell[] fillCellRowWithEmptyCells(Cell[] cells) {
+    public Cell[] fillCellRowWithEmptyCells(Cell[] cells, int row) {
         for (int i = 0; i < cells.length; i++) {
-            Cell cell = new Cell(false);
+            Cell cell = new Cell(false, i, row);
             cells[i] = cell;
         }
         return cells;
@@ -45,27 +48,37 @@ public class GameRules {
 
     public void placeBlockOnGameBoard(TetrisBlock tetrisBlock) {
         this.activeBlock = tetrisBlock;
-        Cell[][] gameBoardWithPlacedShape = this.gameBoard;
-        Cell[][] shape = tetrisBlock.getShape();
-        for (int row = 0; row < shape.length; row++) {
-            Cell[] rowCells = shape[row];
-
-            for (int column = 0; column < rowCells.length; column++) {
-                gameBoardWithPlacedShape[row][column] = rowCells[column];
-            }
         }
-        this.gameBoard = gameBoardWithPlacedShape;
-    }
 
     public void moveActiveBlockDown() {
-        Cell[][] gameBoardWithPlacedShape = this.gameBoard;
-        Cell[][] shape = activeBlock.getShape();
+        if (!isActiveBlockAtBottom()) {
+            activeBlock.moveDown();
+        }
+    }
 
+    public boolean isActiveBlockAtBottom() {
+        for (Cell cell : activeBlock.getShape()) {
+            if (cell.isFilled() && cell.getY() == noOfRows) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-
+    public boolean isActiveBlockAtWalls() {
+        for (Cell cell : activeBlock.getShape()) {
+            if (cell.isFilled() && (cell.getX() == noOfColumns || cell.getX() == 0)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Cell[][] getGameBoard() {
         return gameBoard;
+    }
+
+    public TetrisBlock getActiveBlock() {
+        return activeBlock;
     }
 }
