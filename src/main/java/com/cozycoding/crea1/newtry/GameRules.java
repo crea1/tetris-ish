@@ -86,11 +86,20 @@ public class GameRules {
         return false;
     }
 
+
+
     public Cell[][] getGameBoard() {
         return gameBoard;
     }
 
     public TetrisBlock getActiveBlock() {
         return activeBlock;
+    }
+
+    public void stopActiveBlockAndMergeItWithBoard() {
+        for (Cell cell : activeBlock.getShape()) {
+            gameBoard[cell.getY()][cell.getX()].setFilled(true);
+        }
+        activeBlock = null;
     }
 }

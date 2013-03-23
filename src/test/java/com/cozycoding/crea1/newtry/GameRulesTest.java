@@ -91,6 +91,17 @@ public class GameRulesTest {
         assertEquals(gameRules.noOfColumns, gameRules.getActiveBlock().getShape().get(2).getX());
     }
 
+    @Test
+    public void testMergeActiveBlockWithGameboard() throws Exception {
+        SquareBlock squareBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(squareBlock);
+        gameRules.stopActiveBlockAndMergeItWithBoard();
+        printGameBoard(gameRules.getGameBoard());
+        assertTrue(gameRules.getGameBoard()[0][4].isFilled());
+        assertTrue(gameRules.getGameBoard()[0][4].isFilled());
+        assertTrue(gameRules.getGameBoard()[1][5].isFilled());
+        assertTrue(gameRules.getGameBoard()[1][5].isFilled());
+    }
     private void printGameBoard(Cell[][] gameBoard) {
         System.out.print(" |");
         for (int i = 0; i < gameBoard[0].length; i++) {
