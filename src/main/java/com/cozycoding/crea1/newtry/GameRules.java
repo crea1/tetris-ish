@@ -70,7 +70,7 @@ public class GameRules {
 
     public boolean isActiveBlockAtBottom() {
         for (Cell cell : activeBlock.getShape()) {
-            if (cell.isFilled() && cell.getY() == noOfRows) {
+            if (cell.isFilled() && cell.getY() == noOfRows-1) {
                 return true;
             }
         }
@@ -79,7 +79,7 @@ public class GameRules {
 
     public boolean isActiveBlockAtWalls() {
         for (Cell cell : activeBlock.getShape()) {
-            if (cell.isFilled() && (cell.getX() == noOfColumns || cell.getX() == 0)) {
+            if (cell.isFilled() && (cell.getX() == noOfColumns-1 || cell.getX() == 0)) {
                 return true;
             }
         }
@@ -101,5 +101,14 @@ public class GameRules {
             gameBoard[cell.getY()][cell.getX()].setFilled(true);
         }
         activeBlock = null;
+    }
+
+    public boolean hasCrashedWithOtherCells() {
+        for (Cell cell : activeBlock.getShape()) {
+            if (gameBoard[cell.getY()+1][cell.getX()].isFilled()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

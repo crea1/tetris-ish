@@ -4,6 +4,7 @@ import com.cozycoding.crea1.newtry.Blocks.Cell;
 import com.cozycoding.crea1.newtry.Blocks.SquareBlock;
 import com.cozycoding.crea1.newtry.Blocks.TetrisBlock;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -102,6 +103,29 @@ public class GameRulesTest {
         assertTrue(gameRules.getGameBoard()[1][5].isFilled());
         assertTrue(gameRules.getGameBoard()[1][5].isFilled());
     }
+
+    @Test
+    public void testCrashWithOtherBlock() throws Exception {
+        SquareBlock squareBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(squareBlock);
+        while (!gameRules.isActiveBlockAtBottom()) {
+            gameRules.getActiveBlock().moveDown();
+        }
+        gameRules.stopActiveBlockAndMergeItWithBoard();
+        SquareBlock secondBlock = new SquareBlock();
+        secondBlock.moveLeft();
+        gameRules.placeBlockOnGameBoard(secondBlock);
+        while (!gameRules.hasCrashedWithOtherCells()) {
+            gameRules.getActiveBlock().moveDown();
+        }
+        gameRules.stopActiveBlockAndMergeItWithBoard();
+
+        assertTrue(gameRules.getGameBoard()[14][3].isFilled());
+        assertTrue(gameRules.getGameBoard()[15][3].isFilled());
+        assertTrue(gameRules.getGameBoard()[14][4].isFilled());
+        assertTrue(gameRules.getGameBoard()[15][4].isFilled());
+    }
+
     private void printGameBoard(Cell[][] gameBoard) {
         System.out.print(" |");
         for (int i = 0; i < gameBoard[0].length; i++) {
