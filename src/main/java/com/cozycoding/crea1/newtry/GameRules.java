@@ -56,6 +56,18 @@ public class GameRules {
         }
     }
 
+    public void moveActiveBlockLeft() {
+        if (!isActiveBlockAtWalls()) {
+            activeBlock.moveLeft();
+        }
+    }
+
+    public void moveActiveBlockRight() {
+        if (!isActiveBlockAtWalls()) {
+            activeBlock.moveRight();
+        }
+    }
+
     public boolean isActiveBlockAtBottom() {
         for (Cell cell : activeBlock.getShape()) {
             if (cell.isFilled() && cell.getY() == noOfRows) {
