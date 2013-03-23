@@ -2,12 +2,8 @@ package com.cozycoding.crea1.newtry;
 
 import com.cozycoding.crea1.newtry.Blocks.Cell;
 import com.cozycoding.crea1.newtry.Blocks.SquareBlock;
-import com.cozycoding.crea1.newtry.Blocks.TetrisBlock;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -59,18 +55,18 @@ public class GameRulesTest {
         gameRules.placeBlockOnGameBoard(squareBlock);
         while (!gameRules.isActiveBlockAtBottom()) {
             gameRules.getActiveBlock().moveDown();
-            if (gameRules.getActiveBlock().getShape().get(3).getY() > gameRules.noOfRows) {
+            if (gameRules.getActiveBlock().getShape().get(3).getY() == gameRules.noOfRows) {
                 fail();
             }
         }
-        assertEquals(gameRules.noOfRows, gameRules.getActiveBlock().getShape().get(3).getY());
+        assertEquals(gameRules.noOfRows-1, gameRules.getActiveBlock().getShape().get(3).getY());
     }
 
     @Test
     public void testMoveBlockLeftToWallButNoFurther() throws Exception {
         SquareBlock squareBlock = new SquareBlock();
         gameRules.placeBlockOnGameBoard(squareBlock);
-        while (!gameRules.isActiveBlockAtWalls()) {
+        while (!gameRules.isActiveBlockAtLeftWall()) {
             gameRules.getActiveBlock().moveLeft();
             if (gameRules.getActiveBlock().getShape().get(0).getX() < 0) {
                 fail();
@@ -83,13 +79,13 @@ public class GameRulesTest {
     public void testMoveBlockRightToWallButNoFurther() throws Exception {
         SquareBlock squareBlock = new SquareBlock();
         gameRules.placeBlockOnGameBoard(squareBlock);
-        while (!gameRules.isActiveBlockAtWalls()) {
+        while (!gameRules.isActiveBlockAtRightWall()) {
             gameRules.getActiveBlock().moveRight();
-            if (gameRules.getActiveBlock().getShape().get(2).getX() > gameRules.noOfColumns) {
+            if (gameRules.getActiveBlock().getShape().get(1).getX() == gameRules.noOfColumns) {
                 fail();
             }
         }
-        assertEquals(gameRules.noOfColumns, gameRules.getActiveBlock().getShape().get(2).getX());
+        assertEquals(gameRules.noOfColumns - 1, gameRules.getActiveBlock().getShape().get(2).getX());
     }
 
     @Test
@@ -97,7 +93,6 @@ public class GameRulesTest {
         SquareBlock squareBlock = new SquareBlock();
         gameRules.placeBlockOnGameBoard(squareBlock);
         gameRules.stopActiveBlockAndMergeItWithBoard();
-        printGameBoard(gameRules.getGameBoard());
         assertTrue(gameRules.getGameBoard()[0][4].isFilled());
         assertTrue(gameRules.getGameBoard()[0][4].isFilled());
         assertTrue(gameRules.getGameBoard()[1][5].isFilled());

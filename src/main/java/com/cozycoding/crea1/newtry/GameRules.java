@@ -1,10 +1,7 @@
 package com.cozycoding.crea1.newtry;
 
 import com.cozycoding.crea1.newtry.Blocks.Cell;
-import com.cozycoding.crea1.newtry.Blocks.SquareBlock;
 import com.cozycoding.crea1.newtry.Blocks.TetrisBlock;
-
-import java.util.List;
 
 /**
  * @author Marius Kristensen
@@ -57,13 +54,13 @@ public class GameRules {
     }
 
     public void moveActiveBlockLeft() {
-        if (!isActiveBlockAtWalls()) {
+        if (!isActiveBlockAtLeftWall()) {
             activeBlock.moveLeft();
         }
     }
 
     public void moveActiveBlockRight() {
-        if (!isActiveBlockAtWalls()) {
+        if (!isActiveBlockAtRightWall()) {
             activeBlock.moveRight();
         }
     }
@@ -77,9 +74,18 @@ public class GameRules {
         return false;
     }
 
-    public boolean isActiveBlockAtWalls() {
+    public boolean isActiveBlockAtLeftWall() {
         for (Cell cell : activeBlock.getShape()) {
-            if (cell.isFilled() && (cell.getX() == noOfColumns-1 || cell.getX() == 0)) {
+            if (cell.isFilled() && cell.getX() == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isActiveBlockAtRightWall() {
+        for (Cell cell : activeBlock.getShape()) {
+            if (cell.isFilled() && cell.getX() == noOfColumns-1) {
                 return true;
             }
         }
