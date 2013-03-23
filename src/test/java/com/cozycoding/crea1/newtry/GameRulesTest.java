@@ -3,21 +3,23 @@ package com.cozycoding.crea1.newtry;
 import com.cozycoding.crea1.newtry.Blocks.Cell;
 import com.cozycoding.crea1.newtry.Blocks.SquareBlock;
 import com.cozycoding.crea1.newtry.Blocks.TetrisBlock;
-import com.cozycoding.crea1.newtry.Blocks.TriangleBlock;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 
 /**
  * @author Marius Kristensen
  */
 public class GameRulesTest {
 
-    private Cell filledCell = new Cell(true);
-    private Cell emptyCell = new Cell(false);
+    private Cell filledCell = new Cell(true,0,0);
+    private Cell emptyCell = new Cell(false,0,0);
     GameRules gameRules;
 
     @Before
@@ -34,7 +36,7 @@ public class GameRulesTest {
 
     @Test
     public void testGameBoardFullOfEmptyRowsOnGameStart() {
-        Cell[] emptyCells = gameRules.fillCellRowWithEmptyCells(new Cell[8]);
+        Cell[] emptyCells = gameRules.fillCellRowWithEmptyCells(new Cell[8], 0);
         assertFalse(gameRules.isRowFilled(emptyCells));
     }
 
@@ -51,51 +53,42 @@ public class GameRulesTest {
     }
 
     @Test
-    public void testPlaceSquareOnGameBoard() throws Exception {
+    public void testMoveBlockUntilBottomButNoFurther() throws Exception {
         SquareBlock squareBlock = new SquareBlock();
         gameRules.placeBlockOnGameBoard(squareBlock);
-        Cell[][] gameBoard = gameRules.getGameBoard();
-        assertTrue(gameBoard[0][0].isFilled());
-        assertTrue(gameBoard[0][1].isFilled());
-        assertTrue(gameBoard[1][0].isFilled());
-        assertTrue(gameBoard[1][1].isFilled());
+        while (!gameRules.isActiveBlockAtBottom()) {
+            gameRules.getActiveBlock().moveDown();
+            if (gameRules.getActiveBlock().getShape().get(3).getY() > gameRules.noOfRows) {
+                fail();
+            }
+        }
+        assertEquals(gameRules.noOfRows, gameRules.getActiveBlock().getShape().get(3).getY());
     }
 
     @Test
-    public void testPlaceTriangleBlock() throws Exception {
-        TriangleBlock triangleBlock = new TriangleBlock();
-        gameRules.placeBlockOnGameBoard(triangleBlock);
-        Cell[][] gameBoard = gameRules.getGameBoard();
-        assertFalse(gameBoard[0][0].isFilled()); assertTrue(gameBoard[0][1].isFilled()); assertFalse(gameBoard[0][2].isFilled());
-        assertTrue(gameBoard[1][0].isFilled()); assertTrue(gameBoard[1][1].isFilled()); assertTrue(gameBoard[1][2].isFilled());
+    public void testMoveBlockLeftToWallButNoFurther() throws Exception {
+        SquareBlock squareBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(squareBlock);
+        while (!gameRules.isActiveBlockAtWalls()) {
+            gameRules.getActiveBlock().moveLeft();
+            if (gameRules.getActiveBlock().getShape().get(0).getX() < 0) {
+                fail();
+            }
+        }
+        assertEquals(0, 0);
     }
 
     @Test
-    public void testWhenPlacedSquareCellsShouldHaveCorrectXandY() throws Exception {
+    public void testMoveBlockRightToWallButNoFurther() throws Exception {
         SquareBlock squareBlock = new SquareBlock();
         gameRules.placeBlockOnGameBoard(squareBlock);
-        Cell[][] gameBoard = gameRules.getGameBoard();
-        TetrisBlock activeBlock = gameRules.getActiveBlock();
-        Cell[][] activeBlockShape = activeBlock.getShape();
-        assertEquals(0, activeBlockShape[0][0].getX());
-        assertEquals(0, activeBlockShape[0][0].getY());
-    }
-
-    @Test
-    public void testMoveShapeDown() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        gameRules.placeBlockOnGameBoard(squareBlock);
-        gameRules.moveActiveBlockDown();
-        Cell[][] gameBoard = gameRules.getGameBoard();
-        printGameBoard(gameBoard);
-
-        assertFalse(gameBoard[0][0].isFilled());
-        assertFalse(gameBoard[0][1].isFilled());
-        assertTrue(gameBoard[1][0].isFilled());
-        assertTrue(gameBoard[1][1].isFilled());
-        assertTrue(gameBoard[2][0].isFilled());
-        assertTrue(gameBoard[2][1].isFilled());
-
+        while (!gameRules.isActiveBlockAtWalls()) {
+            gameRules.getActiveBlock().moveRight();
+            if (gameRules.getActiveBlock().getShape().get(2).getX() > gameRules.noOfColumns) {
+                fail();
+            }
+        }
+        assertEquals(gameRules.noOfColumns, gameRules.getActiveBlock().getShape().get(2).getX());
     }
 
     private void printGameBoard(Cell[][] gameBoard) {

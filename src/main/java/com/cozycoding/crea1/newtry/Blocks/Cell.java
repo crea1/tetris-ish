@@ -8,8 +8,10 @@ public class Cell {
     private int x;
     private int y;
 
-    public Cell(boolean filled) {
+    public Cell(boolean filled, int x, int y) {
         isFilled = filled;
+        this.x = x;
+        this.y = y;
     }
 
     public boolean isFilled() {
