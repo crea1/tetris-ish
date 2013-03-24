@@ -2,7 +2,6 @@ package com.cozycoding.crea1.newtry;
 
 import com.cozycoding.crea1.newtry.Blocks.Cell;
 import com.cozycoding.crea1.newtry.Blocks.TetrisBlock;
-import com.cozycoding.crea1.shapes.TetrisShape;
 
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -62,7 +61,6 @@ public class GamePanel extends JPanel {
         }
         for (Cell cell : activeBlock.getShape()) {
             cells.add(createRectangle(cell.getX(), cell.getY()));
-            System.out.println(cell.getX() + " " + cell.getY());
         }
         repaint();
     }

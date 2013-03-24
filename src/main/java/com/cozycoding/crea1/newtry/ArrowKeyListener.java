@@ -14,18 +14,18 @@ public class ArrowKeyListener extends KeyAdapter {
         public void keyPressed(KeyEvent keyEvent) {
             switch (keyEvent.getKeyCode()) {
                 case 37:
-                    Tetris2.getGameRules().moveActiveBlockLeft();
+                    Game.getGameRules().moveActiveBlockLeft();
                     break;
                 case 38:
                     //TODO Rotate block
                     break;
                 case 39:
-                    Tetris2.getGameRules().moveActiveBlockRight();
+                    Game.getGameRules().moveActiveBlockRight();
                     break;
                 case 40:
-                    Tetris2.getGameRules().moveActiveBlockDown();
+                    Game.getGameRules().moveActiveBlockDown();
                     break;
             }
-            Tetris2.paintGameBoard();
+            Game.paintGameBoard();
         }
 }
