@@ -105,6 +105,7 @@ public class GameRules {
     public void stopActiveBlockAndMergeItWithBoard() {
         for (Cell cell : activeBlock.getShape()) {
             gameBoard[cell.getY()][cell.getX()].setFilled(true);
+            gameBoard[cell.getY()][cell.getX()].setColor(cell.getColor());
         }
         activeBlock = null;
     }
