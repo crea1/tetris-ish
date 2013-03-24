@@ -34,7 +34,14 @@ public class Game implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            gameRules.moveActiveBlockDown();
+
+            if (gameRules.hasCrashedWithOtherCells()) {
+                gameRules.stopActiveBlockAndMergeItWithBoard();
+                gameRules.placeBlockOnGameBoard(new SquareBlock());
+            } else {
+                gameRules.moveActiveBlockDown();
+            }
+
             gamePanel.paintGameBoard(gameRules.getGameBoard(), gameRules.getActiveBlock());
         }
     }

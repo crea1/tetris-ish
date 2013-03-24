@@ -47,8 +47,8 @@ public class GameRules {
         this.activeBlock = tetrisBlock;
         }
 
-    public void moveActiveBlockDown() {
-        if (!isActiveBlockAtBottom()) {
+    public synchronized void moveActiveBlockDown() {
+        if (!hasCrashedWithOtherCells()) {
             activeBlock.moveDown();
         }
     }
@@ -106,13 +106,17 @@ public class GameRules {
         for (Cell cell : activeBlock.getShape()) {
             gameBoard[cell.getY()][cell.getX()].setFilled(true);
             gameBoard[cell.getY()][cell.getX()].setColor(cell.getColor());
+
         }
         activeBlock = null;
     }
 
     public boolean hasCrashedWithOtherCells() {
+        if (isActiveBlockAtBottom()) {
+            return true;
+        }
         for (Cell cell : activeBlock.getShape()) {
-            if (gameBoard[cell.getY()+1][cell.getX()].isFilled()) {
+            if (gameBoard[cell.getY() + 1][cell.getX()].isFilled()) {
                 return true;
             }
         }
