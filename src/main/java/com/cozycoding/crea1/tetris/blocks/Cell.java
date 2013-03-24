@@ -1,5 +1,7 @@
 package com.cozycoding.crea1.tetris.blocks;
 
+import java.awt.Color;
+
 /**
  * @author Marius Kristensen
  */
@@ -7,6 +9,14 @@ public class Cell {
     private boolean isFilled;
     private int x;
     private int y;
+    private Color color = new Color(0xCCCCCC);
+
+    public Cell(boolean filled, int x, int y, Color color) {
+        isFilled = filled;
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
 
     public Cell(boolean filled, int x, int y) {
         isFilled = filled;
@@ -36,5 +46,9 @@ public class Cell {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

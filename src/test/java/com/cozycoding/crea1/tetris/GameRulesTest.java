@@ -6,6 +6,8 @@ import com.cozycoding.crea1.tetris.GameRules;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.Color;
+
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;

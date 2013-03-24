@@ -1,5 +1,6 @@
 package com.cozycoding.crea1.tetris.blocks;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,12 +9,13 @@ import java.util.List;
  * @author Marius Kristensen
  */
 public class SquareBlock implements TetrisBlock {
-    /* Setup square shape */
+    private static final Color color = new Color(0xFF0056);
 
-    Cell cell1 = new Cell(true,4,0);
-    Cell cell2 = new Cell(true,4,1);
-    Cell cell3 = new Cell(true,5,0);
-    Cell cell4 = new Cell(true,5,1);
+    /* Setup square shape */
+    Cell cell1 = new Cell(true,4,0, color);
+    Cell cell2 = new Cell(true,4,1, color);
+    Cell cell3 = new Cell(true,5,0, color);
+    Cell cell4 = new Cell(true,5,1, color);
     List<Cell> cells = new ArrayList<>();
 
     public SquareBlock() {

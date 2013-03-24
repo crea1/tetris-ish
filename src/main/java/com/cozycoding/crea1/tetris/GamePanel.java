@@ -20,10 +20,8 @@ public class GamePanel extends JPanel {
     private final Double height;
     private final Double width;
     private final Double cellSize;
-    private List<RoundRectangle2D> cells = new ArrayList<>();
-    private List<RoundRectangle2D> board = new ArrayList<>();
-    private static final Color color = new Color(0xFF0056);
-    private static final Color emptyCells = new Color(0x3377FF);
+    private List<Cell> cells = new ArrayList<>();
+    private List<Cell> board = new ArrayList<>();
 
     public GamePanel(Dimension dimension) {
         setPreferredSize(dimension);
@@ -39,14 +37,14 @@ public class GamePanel extends JPanel {
         clear(g);
         Graphics2D graphics2D = (Graphics2D) g;
 
-        for (RoundRectangle2D cell : board) {
-            graphics2D.setColor(emptyCells);
-            graphics2D.fill(cell);
+        for (Cell cell : board) {
+            graphics2D.setColor(cell.getColor());
+            graphics2D.fill(createRectangle(cell.getX(), cell.getY()));
         }
 
-        for (RoundRectangle2D cell : cells) {
-            graphics2D.setColor(color);
-            graphics2D.fill(cell);
+        for (Cell cell : cells) {
+            graphics2D.setColor(cell.getColor());
+            graphics2D.fill(createRectangle(cell.getX(), cell.getY()));
         }
     }
 
@@ -56,12 +54,10 @@ public class GamePanel extends JPanel {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[i].length; j++) {
                 Cell cell = gameBoard[i][j];
-                board.add(createRectangle(cell.getX(), cell.getY()));
+                board.add(cell);
             }
         }
-        for (Cell cell : activeBlock.getShape()) {
-            cells.add(createRectangle(cell.getX(), cell.getY()));
-        }
+        cells.addAll(activeBlock.getShape());
         repaint();
     }
 
