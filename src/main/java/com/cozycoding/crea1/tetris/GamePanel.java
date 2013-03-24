@@ -4,6 +4,7 @@ import com.cozycoding.crea1.tetris.blocks.Cell;
 import com.cozycoding.crea1.tetris.blocks.TetrisBlock;
 
 import javax.swing.JPanel;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -40,6 +41,9 @@ public class GamePanel extends JPanel {
         for (Cell cell : board) {
             graphics2D.setColor(cell.getColor());
             graphics2D.fill(createRectangle(cell.getX(), cell.getY()));
+            graphics2D.setStroke(new BasicStroke(1));
+            graphics2D.setColor(new Color(0xBBBBBB));
+            graphics2D.draw(createRectangle(cell.getX(), cell.getY()));
         }
 
         for (Cell cell : cells) {
