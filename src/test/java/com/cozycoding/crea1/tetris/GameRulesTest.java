@@ -124,6 +124,41 @@ public class GameRulesTest {
         assertTrue(gameRules.getGameBoard()[15][4].isFilled());
     }
 
+    @Test
+    public void testCrashWithOtherBlockOnTheRight() throws Exception {
+        SquareBlock squareBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(squareBlock);
+        gameRules.getActiveBlock().moveRight();
+        gameRules.getActiveBlock().moveRight();
+        gameRules.stopActiveBlockAndMergeItWithBoard();
+        SquareBlock secondBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(secondBlock);
+        gameRules.moveActiveBlockRight();
+        gameRules.stopActiveBlockAndMergeItWithBoard();
+        assertTrue(gameRules.getGameBoard()[0][4].isFilled());
+        assertTrue(gameRules.getGameBoard()[0][4].isFilled());
+        assertTrue(gameRules.getGameBoard()[1][5].isFilled());
+        assertTrue(gameRules.getGameBoard()[1][5].isFilled());
+    }
+
+    @Test
+    public void testCrashWithOtherBlockOnTheLeft() throws Exception {
+        SquareBlock squareBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(squareBlock);
+        gameRules.getActiveBlock().moveLeft();
+        gameRules.getActiveBlock().moveLeft();
+        gameRules.stopActiveBlockAndMergeItWithBoard();
+        SquareBlock secondBlock = new SquareBlock();
+        gameRules.placeBlockOnGameBoard(secondBlock);
+        gameRules.moveActiveBlockLeft();
+        gameRules.stopActiveBlockAndMergeItWithBoard();
+        printGameBoard(gameRules.getGameBoard());
+        assertTrue(gameRules.getGameBoard()[0][4].isFilled());
+        assertTrue(gameRules.getGameBoard()[0][4].isFilled());
+        assertTrue(gameRules.getGameBoard()[1][5].isFilled());
+        assertTrue(gameRules.getGameBoard()[1][5].isFilled());
+    }
+
     private void printGameBoard(Cell[][] gameBoard) {
         System.out.print(" |");
         for (int i = 0; i < gameBoard[0].length; i++) {

@@ -54,15 +54,34 @@ public class GameRules {
     }
 
     public void moveActiveBlockLeft() {
-        if (!isActiveBlockAtLeftWall()) {
+        //todo also check if there are blocks to the left
+        if (!isActiveBlockAtLeftWall() && !cellToTheLeftIsFilled()) {
             activeBlock.moveLeft();
         }
     }
 
+    private boolean cellToTheLeftIsFilled() {
+        for (Cell cell : activeBlock.getShape()) {
+            if (gameBoard[cell.getY()][cell.getX() - 1].isFilled()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void moveActiveBlockRight() {
-        if (!isActiveBlockAtRightWall()) {
+        if (!isActiveBlockAtRightWall() && !cellToTheRightIsFilled()) {
             activeBlock.moveRight();
         }
+    }
+
+    private boolean cellToTheRightIsFilled() {
+        for (Cell cell : activeBlock.getShape()) {
+            if (gameBoard[cell.getY()][cell.getX() + 1].isFilled()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isActiveBlockAtBottom() {
@@ -94,11 +113,11 @@ public class GameRules {
 
 
 
-    public Cell[][] getGameBoard() {
+    public synchronized Cell[][] getGameBoard() {
         return gameBoard;
     }
 
-    public TetrisBlock getActiveBlock() {
+    public synchronized TetrisBlock getActiveBlock() {
         return activeBlock;
     }
 
