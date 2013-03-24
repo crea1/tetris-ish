@@ -1,7 +1,8 @@
-package com.cozycoding.crea1.newtry;
+package com.cozycoding.crea1.tetris;
 
-import com.cozycoding.crea1.newtry.Blocks.Cell;
-import com.cozycoding.crea1.newtry.Blocks.SquareBlock;
+import com.cozycoding.crea1.tetris.blocks.Cell;
+import com.cozycoding.crea1.tetris.blocks.SquareBlock;
+import com.cozycoding.crea1.tetris.GameRules;
 import org.junit.Before;
 import org.junit.Test;
 

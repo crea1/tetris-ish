@@ -1,4 +1,4 @@
-package com.cozycoding.crea1.newtry.Blocks;
+package com.cozycoding.crea1.tetris.blocks;
 
 /**
  * @author Marius Kristensen

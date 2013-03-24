@@ -1,5 +1,8 @@
-package com.cozycoding.crea1.newtry.Blocks;
+package com.cozycoding.crea1.tetris.blocks;
 
+import com.cozycoding.crea1.tetris.blocks.Cell;
+import com.cozycoding.crea1.tetris.blocks.SquareBlock;
+import com.cozycoding.crea1.tetris.blocks.TetrisBlock;
 import org.junit.Test;
 
 import java.util.List;

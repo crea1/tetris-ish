@@ -1,4 +1,4 @@
-package com.cozycoding.crea1.newtry.Blocks;
+package com.cozycoding.crea1.tetris.blocks;
 
 import java.util.ArrayList;
 import java.util.Arrays;

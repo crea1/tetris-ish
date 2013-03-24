@@ -1,4 +1,4 @@
-package com.cozycoding.crea1.newtry;
+package com.cozycoding.crea1.tetris;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

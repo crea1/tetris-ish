@@ -1,6 +1,6 @@
-package com.cozycoding.crea1.newtry;
+package com.cozycoding.crea1.tetris;
 
-import com.cozycoding.crea1.newtry.Blocks.SquareBlock;
+import com.cozycoding.crea1.tetris.blocks.SquareBlock;
 
 import java.awt.Dimension;
 
