@@ -53,8 +53,8 @@ public class GamePanel extends JPanel {
     }
 
     public void paintGameBoard(Cell[][] gameBoard, TetrisBlock activeBlock) {
-        board.removeAll(board);
-        cells.removeAll(cells);
+        board = new ArrayList<>();
+        cells = new ArrayList<>();
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[i].length; j++) {
                 Cell cell = gameBoard[i][j];
