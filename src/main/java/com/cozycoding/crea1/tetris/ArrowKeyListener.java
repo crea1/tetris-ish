@@ -17,7 +17,7 @@ public class ArrowKeyListener extends KeyAdapter {
                     Game.getGameRules().moveActiveBlockLeft();
                     break;
                 case 38:
-                    //TODO Rotate block
+                    Game.getGameRules().rotateActiveBlock();
                     break;
                 case 39:
                     Game.getGameRules().moveActiveBlockRight();

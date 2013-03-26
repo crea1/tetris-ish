@@ -141,4 +141,8 @@ public class GameRules {
         }
         return false;
     }
+
+    public void rotateActiveBlock() {
+        activeBlock.RotateShape();
+    }
 }
