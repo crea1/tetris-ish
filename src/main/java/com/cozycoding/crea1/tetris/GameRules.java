@@ -9,7 +9,7 @@ import com.cozycoding.crea1.tetris.blocks.TetrisBlock;
 public class GameRules {
     // |0|1|2|3|4|5|6|7|8|9
     public static final int noOfColumns = 10;
-    protected static final int noOfRows = 18;
+    public static final int noOfRows = 18;
 
     private Cell[][] gameBoard = new Cell[noOfRows][];
     private TetrisBlock activeBlock;
@@ -144,6 +144,6 @@ public class GameRules {
 
     public void rotateActiveBlock() {
         // TODO Check for crash when rotatin
-        activeBlock.rotateShape();
+        activeBlock.rotateShapeCW();
     }
 }

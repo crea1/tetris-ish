@@ -49,7 +49,7 @@ public class SquareBlock implements TetrisBlock {
     }
 
     @Override
-    public void rotateShape() {
+    public void rotateShapeCW() {
         // Do nothing for this kind of block
     }
 
