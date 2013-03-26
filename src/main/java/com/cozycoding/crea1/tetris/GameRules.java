@@ -77,7 +77,12 @@ public class GameRules {
 
     private boolean cellToTheRightIsFilled() {
         for (Cell cell : activeBlock.getShape()) {
-            if (gameBoard[cell.getY()][cell.getX() + 1].isFilled()) {
+
+            if (cell.getY() < 0) {
+                // We don't care if the cell is above the game board
+                return false;
+            }
+            else if (gameBoard[cell.getY()][cell.getX() + 1].isFilled()) {
                 return true;
             }
         }
