@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Marius Kristensen
  */
-public class PyramidBlock implements TetrisBlock {
+public class PyramidBlock extends BlockRules implements TetrisBlock {
     private static final Color color = new Color(0x3F3ABC);
     /**
      * 123
@@ -58,48 +58,36 @@ public class PyramidBlock implements TetrisBlock {
 
     @Override
     public void rotateShapeCW(Cell[][] gameBoard) {
-        // The middle cell is the same for all transformations
-        cell1 = new Cell(true, cells.get(1).getX(), cells.get(1).getY(), color);
-        if (direction == BlockDirection.DOWN) {
-            List<Cell> cells1 = rotateLeft();
-            if (checkIfRotationIsAllowed(gameBoard, cells1)) {
-                cells = cells1;
-                direction = BlockDirection.LEFT;
-            }
-        } else if (direction == BlockDirection.LEFT && cell1.getX() != GameRules.noOfColumns - 1) {
-            List<Cell> cells1 = rotateUp();
-            if (checkIfRotationIsAllowed(gameBoard, cells1)) {
-                cells = cells1;
-                direction = BlockDirection.UP;
-            }
-        } else if (direction == BlockDirection.UP && cell1.getY() != GameRules.noOfRows - 1) {
-            List<Cell> cells1 = rotateRight();
-            if (checkIfRotationIsAllowed(gameBoard, cells1)) {
-                cells = cells1;
-                direction = BlockDirection.RIGHT;
-            }
-        } else if (direction == BlockDirection.RIGHT && cell1.getX() != 0) {
-            List<Cell> cells1 = rotateDown();
-            if (checkIfRotationIsAllowed(gameBoard, cells1)) {
-                cells = cells1;
-                direction = BlockDirection.DOWN;
-            }
-        }
-    }
+        BlockDirection directionAfterRotate = direction;
+        List<Cell> cellsAfterRotation = new ArrayList<>();
 
-    private boolean checkIfRotationIsAllowed(Cell[][] gameBoard, List<Cell> cells1) {
-        for (Cell cell : cells1) {
-            if (cell.getY() > 0) {
-                if (gameBoard[cell.getY()][cell.getX()].isFilled()) {
-                    return false;
-                }
-            }
+        if (direction == BlockDirection.DOWN) {
+            cellsAfterRotation = rotateLeft();
+            directionAfterRotate = BlockDirection.LEFT;
+
+        } else if (direction == BlockDirection.LEFT && cells.get(1).getX() != GameRules.noOfColumns - 1) {
+            cellsAfterRotation = rotateUp();
+            directionAfterRotate = BlockDirection.UP;
+
+        } else if (direction == BlockDirection.UP && cells.get(1).getY() != GameRules.noOfRows - 1) {
+            cellsAfterRotation = rotateRight();
+            directionAfterRotate = BlockDirection.RIGHT;
+
+        } else if (direction == BlockDirection.RIGHT && cells.get(1).getX() != 0) {
+            cellsAfterRotation = rotateDown();
+            directionAfterRotate = BlockDirection.DOWN;
+
         }
-        return true;
+
+        if (directionAfterRotate != direction && rotationIsAllowed(gameBoard, cellsAfterRotation)) {
+            cells = cellsAfterRotation;
+            direction = directionAfterRotate;
+        }
     }
 
     private List<Cell> rotateLeft() {
         cell0 = new Cell(true, cells.get(0).getX() + 1, cells.get(0).getY() - 1, color);
+        cell1 = new Cell(true, cells.get(1).getX(), cells.get(1).getY(), color);
         cell2 = new Cell(true, cells.get(2).getX() - 1, cells.get(2).getY() + 1, color);
         cell3 = new Cell(true, cells.get(3).getX() - 1, cells.get(3).getY() - 1, color);
         return Arrays.asList(cell0, cell1, cell2, cell3);
@@ -107,6 +95,7 @@ public class PyramidBlock implements TetrisBlock {
 
     private List<Cell> rotateUp() {
         cell0 = new Cell(true, cells.get(0).getX() + 1, cells.get(0).getY() + 1, color);
+        cell1 = new Cell(true, cells.get(1).getX(), cells.get(1).getY(), color);
         cell2 = new Cell(true, cells.get(2).getX() - 1, cells.get(2).getY() - 1, color);
         cell3 = new Cell(true, cells.get(3).getX() + 1, cells.get(3).getY() - 1, color);
         return Arrays.asList(cell0, cell1, cell2, cell3);
@@ -114,6 +103,7 @@ public class PyramidBlock implements TetrisBlock {
 
     private List<Cell> rotateRight() {
         cell0 = new Cell(true, cells.get(0).getX() - 1, cells.get(0).getY() + 1, color);
+        cell1 = new Cell(true, cells.get(1).getX(), cells.get(1).getY(), color);
         cell2 = new Cell(true, cells.get(2).getX() + 1, cells.get(2).getY() - 1, color);
         cell3 = new Cell(true, cells.get(3).getX() + 1, cells.get(3).getY() + 1, color);
         return Arrays.asList(cell0, cell1, cell2, cell3);
@@ -121,11 +111,23 @@ public class PyramidBlock implements TetrisBlock {
 
     private List<Cell> rotateDown() {
         cell0 = new Cell(true, cells.get(0).getX() - 1, cells.get(0).getY() - 1, color);
+        cell1 = new Cell(true, cells.get(1).getX(), cells.get(1).getY(), color);
         cell2 = new Cell(true, cells.get(2).getX() + 1, cells.get(2).getY() + 1, color);
         cell3 = new Cell(true, cells.get(3).getX() - 1, cells.get(3).getY() + 1, color);
         return Arrays.asList(cell0, cell1, cell2, cell3);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("|PYRAMIDSHAPE|");
+        s.append(" Direction: " + direction);
+        s.append(" Cells: [");
+        for (Cell cell : cells) {
+            s.append("(" + cell.getX() + ", " + cell.getY() + ")");
+        }
+        s.append("]");
+        return s.toString();
     }
 }
 
