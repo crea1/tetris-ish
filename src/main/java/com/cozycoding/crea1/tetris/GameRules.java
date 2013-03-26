@@ -151,6 +151,6 @@ public class GameRules {
 
     public void rotateActiveBlock() {
         // TODO Check for crash when rotatin
-        activeBlock.rotateShapeCW();
+        activeBlock.rotateShapeCW(gameBoard);
     }
 }

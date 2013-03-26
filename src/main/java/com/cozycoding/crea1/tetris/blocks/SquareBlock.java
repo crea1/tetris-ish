@@ -30,7 +30,7 @@ public class SquareBlock implements TetrisBlock {
     @Override
     public void moveDown() {
         for (Cell cell : cells) {
-            cell.setY(cell.getY() +1);
+            cell.setY(cell.getY() + 1);
         }
     }
 
@@ -49,7 +49,7 @@ public class SquareBlock implements TetrisBlock {
     }
 
     @Override
-    public void rotateShapeCW() {
+    public void rotateShapeCW(Cell[][] gameBoard) {
         // Do nothing for this kind of block
     }
 

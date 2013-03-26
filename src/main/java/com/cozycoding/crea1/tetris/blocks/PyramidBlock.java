@@ -16,10 +16,10 @@ public class PyramidBlock implements TetrisBlock {
      * 123
      * 4
      */
-    Cell cell0 = new Cell(true, 4, 0, color);
-    Cell cell1 = new Cell(true, 5, 0, color);
-    Cell cell2 = new Cell(true, 6, 0, color);
-    Cell cell3 = new Cell(true, 5, 1, color);
+    private Cell cell0 = new Cell(true, 4, 0, color);
+    private Cell cell1 = new Cell(true, 5, 0, color);
+    private Cell cell2 = new Cell(true, 6, 0, color);
+    private Cell cell3 = new Cell(true, 5, 1, color);
     private List<Cell> cells = new ArrayList<>();
     private BlockDirection direction = BlockDirection.DOWN;
 
@@ -57,48 +57,75 @@ public class PyramidBlock implements TetrisBlock {
     }
 
     @Override
-    public void rotateShapeCW() {
+    public void rotateShapeCW(Cell[][] gameBoard) {
         // The middle cell is the same for all transformations
         cell1 = new Cell(true, cells.get(1).getX(), cells.get(1).getY(), color);
         if (direction == BlockDirection.DOWN) {
-            rotateLeft();
+            List<Cell> cells1 = rotateLeft();
+            if (checkIfRotationIsAllowed(gameBoard, cells1)) {
+                cells = cells1;
+                direction = BlockDirection.LEFT;
+            }
         } else if (direction == BlockDirection.LEFT && cell1.getX() != GameRules.noOfColumns - 1) {
-            rotateUp();
+            List<Cell> cells1 = rotateUp();
+            if (checkIfRotationIsAllowed(gameBoard, cells1)) {
+                cells = cells1;
+                direction = BlockDirection.UP;
+            }
         } else if (direction == BlockDirection.UP && cell1.getY() != GameRules.noOfRows - 1) {
-            rotateRight();
+            List<Cell> cells1 = rotateRight();
+            if (checkIfRotationIsAllowed(gameBoard, cells1)) {
+                cells = cells1;
+                direction = BlockDirection.RIGHT;
+            }
         } else if (direction == BlockDirection.RIGHT && cell1.getX() != 0) {
-            rotateDown();
+            List<Cell> cells1 = rotateDown();
+            if (checkIfRotationIsAllowed(gameBoard, cells1)) {
+                cells = cells1;
+                direction = BlockDirection.DOWN;
+            }
         }
-
-        cells = Arrays.asList(cell0, cell1, cell2, cell3);
     }
 
-    private void rotateLeft() {
+    private boolean checkIfRotationIsAllowed(Cell[][] gameBoard, List<Cell> cells1) {
+        for (Cell cell : cells1) {
+            if (cell.getY() > 0) {
+                if (gameBoard[cell.getY()][cell.getX()].isFilled()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private List<Cell> rotateLeft() {
         cell0 = new Cell(true, cells.get(0).getX() + 1, cells.get(0).getY() - 1, color);
         cell2 = new Cell(true, cells.get(2).getX() - 1, cells.get(2).getY() + 1, color);
         cell3 = new Cell(true, cells.get(3).getX() - 1, cells.get(3).getY() - 1, color);
-        direction = BlockDirection.LEFT;
+        return Arrays.asList(cell0, cell1, cell2, cell3);
     }
 
-    private void rotateUp() {
+    private List<Cell> rotateUp() {
         cell0 = new Cell(true, cells.get(0).getX() + 1, cells.get(0).getY() + 1, color);
         cell2 = new Cell(true, cells.get(2).getX() - 1, cells.get(2).getY() - 1, color);
         cell3 = new Cell(true, cells.get(3).getX() + 1, cells.get(3).getY() - 1, color);
-        direction = BlockDirection.UP;
+        return Arrays.asList(cell0, cell1, cell2, cell3);
     }
 
-    private void rotateRight() {
+    private List<Cell> rotateRight() {
         cell0 = new Cell(true, cells.get(0).getX() - 1, cells.get(0).getY() + 1, color);
         cell2 = new Cell(true, cells.get(2).getX() + 1, cells.get(2).getY() - 1, color);
         cell3 = new Cell(true, cells.get(3).getX() + 1, cells.get(3).getY() + 1, color);
-        direction = BlockDirection.RIGHT;
+        return Arrays.asList(cell0, cell1, cell2, cell3);
     }
 
-    private void rotateDown() {
+    private List<Cell> rotateDown() {
         cell0 = new Cell(true, cells.get(0).getX() - 1, cells.get(0).getY() - 1, color);
         cell2 = new Cell(true, cells.get(2).getX() + 1, cells.get(2).getY() + 1, color);
         cell3 = new Cell(true, cells.get(3).getX() - 1, cells.get(3).getY() + 1, color);
-        direction = BlockDirection.DOWN;
+        return Arrays.asList(cell0, cell1, cell2, cell3);
+    }
+
     }
 }
 
