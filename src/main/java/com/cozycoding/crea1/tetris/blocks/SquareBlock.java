@@ -48,4 +48,9 @@ public class SquareBlock implements TetrisBlock {
         }
     }
 
+    @Override
+    public void RotateShape() {
+        // Do nothing for this kind of block
+    }
+
 }

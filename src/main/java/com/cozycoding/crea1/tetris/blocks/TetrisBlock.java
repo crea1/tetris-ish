@@ -14,4 +14,6 @@ public interface TetrisBlock {
 
     void moveRight();
 
+    void RotateShape();
+
 }
