@@ -1,5 +1,7 @@
 package com.cozycoding.crea1.tetris.blocks;
 
+import com.cozycoding.crea1.tetris.GameRules;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +44,7 @@ public class PyramidBlock implements TetrisBlock {
     @Override
     public void moveLeft() {
         for (Cell cell : cells) {
-            cell.setX(cell.getX() -1);
+            cell.setX(cell.getX() - 1);
         }
 
     }
@@ -64,7 +66,7 @@ public class PyramidBlock implements TetrisBlock {
             cell3 = new Cell(true, cells.get(2).getX() - 1, cells.get(2).getY() + 1, color);
             cell4 = new Cell(true, cells.get(3).getX() - 1, cells.get(3).getY() - 1, color);
             direction = BlockDirection.LEFT;
-        } else if (direction == BlockDirection.LEFT) {
+        } else if (direction == BlockDirection.LEFT && cell2.getX() != GameRules.noOfColumns - 1) {
             cell1 = new Cell(true, cells.get(0).getX() + 1, cells.get(0).getY() + 1, color);
             cell3 = new Cell(true, cells.get(2).getX() - 1, cells.get(2).getY() - 1, color);
             cell4 = new Cell(true, cells.get(3).getX() + 1, cells.get(3).getY() - 1, color);
@@ -74,7 +76,7 @@ public class PyramidBlock implements TetrisBlock {
             cell3 = new Cell(true, cells.get(2).getX() + 1, cells.get(2).getY() - 1, color);
             cell4 = new Cell(true, cells.get(3).getX() + 1, cells.get(3).getY() + 1, color);
             direction = BlockDirection.RIGHT;
-        } else if (direction == BlockDirection.RIGHT) {
+        } else if (direction == BlockDirection.RIGHT && cell2.getX() != 0) {
             cell1 = new Cell(true, cells.get(0).getX() - 1, cells.get(0).getY() - 1, color);
             cell3 = new Cell(true, cells.get(2).getX() + 1, cells.get(2).getY() + 1, color);
             cell4 = new Cell(true, cells.get(3).getX() - 1, cells.get(3).getY() + 1, color);
