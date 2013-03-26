@@ -143,6 +143,6 @@ public class GameRules {
     }
 
     public void rotateActiveBlock() {
-        activeBlock.RotateShape();
+        activeBlock.rotateShape();
     }
 }

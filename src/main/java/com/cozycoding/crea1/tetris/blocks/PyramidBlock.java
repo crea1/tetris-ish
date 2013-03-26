@@ -56,7 +56,7 @@ public class PyramidBlock implements TetrisBlock {
     }
 
     @Override
-    public void RotateShape() {
+    public void rotateShape() {
         // The middle cell is the same for all transformations
         cell2 = new Cell(true, cells.get(1).getX(), cells.get(1).getY(), color);
         if (direction == BlockDirection.DOWN) {
