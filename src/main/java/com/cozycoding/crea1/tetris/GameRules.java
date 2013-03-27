@@ -1,6 +1,7 @@
 package com.cozycoding.crea1.tetris;
 
 import com.cozycoding.crea1.tetris.blocks.Cell;
+import com.cozycoding.crea1.tetris.blocks.JBlock;
 import com.cozycoding.crea1.tetris.blocks.LBlock;
 import com.cozycoding.crea1.tetris.blocks.OBlock;
 import com.cozycoding.crea1.tetris.blocks.TBlock;
@@ -60,6 +61,8 @@ public class GameRules {
             return new OBlock();
         } else if (x >= 20 && x < 50) {
             return new TBlock();
+        } else if (x >= 50 && x < 80) {
+            return new JBlock();
         } else {
             return new LBlock();
         }
