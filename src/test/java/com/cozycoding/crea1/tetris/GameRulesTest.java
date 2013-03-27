@@ -1,12 +1,9 @@
 package com.cozycoding.crea1.tetris;
 
 import com.cozycoding.crea1.tetris.blocks.Cell;
-import com.cozycoding.crea1.tetris.blocks.SquareBlock;
-import com.cozycoding.crea1.tetris.GameRules;
+import com.cozycoding.crea1.tetris.blocks.OBlock;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.awt.Color;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -54,8 +51,8 @@ public class GameRulesTest {
 
     @Test
     public void testMoveBlockUntilBottomButNoFurther() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        gameRules.placeBlockOnGameBoard(squareBlock);
+        OBlock oBlock = new OBlock();
+        gameRules.placeBlockOnGameBoard(oBlock);
         while (!gameRules.isActiveBlockAtBottom()) {
             gameRules.getActiveBlock().moveDown();
             if (gameRules.getActiveBlock().getShape().get(3).getY() == gameRules.noOfRows) {
@@ -67,8 +64,8 @@ public class GameRulesTest {
 
     @Test
     public void testMoveBlockLeftToWallButNoFurther() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        gameRules.placeBlockOnGameBoard(squareBlock);
+        OBlock oBlock = new OBlock();
+        gameRules.placeBlockOnGameBoard(oBlock);
         while (!gameRules.isActiveBlockAtLeftWall()) {
             gameRules.getActiveBlock().moveLeft();
             if (gameRules.getActiveBlock().getShape().get(0).getX() < 0) {
@@ -80,8 +77,8 @@ public class GameRulesTest {
 
     @Test
     public void testMoveBlockRightToWallButNoFurther() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        gameRules.placeBlockOnGameBoard(squareBlock);
+        OBlock oBlock = new OBlock();
+        gameRules.placeBlockOnGameBoard(oBlock);
         while (!gameRules.isActiveBlockAtRightWall()) {
             gameRules.getActiveBlock().moveRight();
             if (gameRules.getActiveBlock().getShape().get(1).getX() == gameRules.noOfColumns) {
@@ -93,8 +90,8 @@ public class GameRulesTest {
 
     @Test
     public void testMergeActiveBlockWithGameboard() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        gameRules.placeBlockOnGameBoard(squareBlock);
+        OBlock oBlock = new OBlock();
+        gameRules.placeBlockOnGameBoard(oBlock);
         gameRules.stopActiveBlockAndMergeItWithBoard();
         assertTrue(gameRules.getGameBoard()[0][4].isFilled());
         assertTrue(gameRules.getGameBoard()[0][4].isFilled());
@@ -104,13 +101,13 @@ public class GameRulesTest {
 
     @Test
     public void testCrashWithOtherBlock() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        gameRules.placeBlockOnGameBoard(squareBlock);
+        OBlock oBlock = new OBlock();
+        gameRules.placeBlockOnGameBoard(oBlock);
         while (!gameRules.isActiveBlockAtBottom()) {
             gameRules.getActiveBlock().moveDown();
         }
         gameRules.stopActiveBlockAndMergeItWithBoard();
-        SquareBlock secondBlock = new SquareBlock();
+        OBlock secondBlock = new OBlock();
         secondBlock.moveLeft();
         gameRules.placeBlockOnGameBoard(secondBlock);
         while (!gameRules.hasCrashedWithOtherCells()) {
@@ -126,12 +123,12 @@ public class GameRulesTest {
 
     @Test
     public void testCrashWithOtherBlockOnTheRight() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        gameRules.placeBlockOnGameBoard(squareBlock);
+        OBlock oBlock = new OBlock();
+        gameRules.placeBlockOnGameBoard(oBlock);
         gameRules.getActiveBlock().moveRight();
         gameRules.getActiveBlock().moveRight();
         gameRules.stopActiveBlockAndMergeItWithBoard();
-        SquareBlock secondBlock = new SquareBlock();
+        OBlock secondBlock = new OBlock();
         gameRules.placeBlockOnGameBoard(secondBlock);
         gameRules.moveActiveBlockRight();
         gameRules.stopActiveBlockAndMergeItWithBoard();
@@ -143,12 +140,12 @@ public class GameRulesTest {
 
     @Test
     public void testCrashWithOtherBlockOnTheLeft() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        gameRules.placeBlockOnGameBoard(squareBlock);
+        OBlock oBlock = new OBlock();
+        gameRules.placeBlockOnGameBoard(oBlock);
         gameRules.getActiveBlock().moveLeft();
         gameRules.getActiveBlock().moveLeft();
         gameRules.stopActiveBlockAndMergeItWithBoard();
-        SquareBlock secondBlock = new SquareBlock();
+        OBlock secondBlock = new OBlock();
         gameRules.placeBlockOnGameBoard(secondBlock);
         gameRules.moveActiveBlockLeft();
         gameRules.stopActiveBlockAndMergeItWithBoard();

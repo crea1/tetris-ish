@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Marius Kristensen
  */
-public class PyramidBlock extends BlockRules implements TetrisBlock {
+public class TBlock extends BlockRules implements TetrisBlock {
     private static final Color color = new Color(0x3F3ABC);
     /**
      * 123
@@ -24,7 +24,7 @@ public class PyramidBlock extends BlockRules implements TetrisBlock {
     private BlockDirection direction = BlockDirection.DOWN;
 
 
-    public PyramidBlock() {
+    public TBlock() {
         cells = Arrays.asList(cell0, cell1, cell2, cell3);
     }
 

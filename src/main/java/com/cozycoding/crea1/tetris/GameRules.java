@@ -2,8 +2,8 @@ package com.cozycoding.crea1.tetris;
 
 import com.cozycoding.crea1.tetris.blocks.Cell;
 import com.cozycoding.crea1.tetris.blocks.LBlock;
-import com.cozycoding.crea1.tetris.blocks.PyramidBlock;
-import com.cozycoding.crea1.tetris.blocks.SquareBlock;
+import com.cozycoding.crea1.tetris.blocks.OBlock;
+import com.cozycoding.crea1.tetris.blocks.TBlock;
 import com.cozycoding.crea1.tetris.blocks.TetrisBlock;
 
 import java.util.Random;
@@ -57,9 +57,9 @@ public class GameRules {
         Random random = new Random();
         int x = random.nextInt(100);
         if (x < 20) {
-            return new SquareBlock();
+            return new OBlock();
         } else if (x >= 20 && x < 50) {
-            return new PyramidBlock();
+            return new TBlock();
         } else {
             return new LBlock();
         }

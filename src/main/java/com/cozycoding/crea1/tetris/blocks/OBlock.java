@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author Marius Kristensen
  */
-public class SquareBlock implements TetrisBlock {
+public class OBlock implements TetrisBlock {
     private static final Color color = new Color(0xFF0056);
 
     /* Setup square shape */
@@ -18,7 +18,7 @@ public class SquareBlock implements TetrisBlock {
     Cell cell4 = new Cell(true,5,1, color);
     List<Cell> cells = new ArrayList<>();
 
-    public SquareBlock() {
+    public OBlock() {
         cells = Arrays.asList(cell1, cell2, cell3, cell4);
     }
 

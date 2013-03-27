@@ -1,6 +1,6 @@
 package com.cozycoding.crea1.tetris;
 
-import com.cozycoding.crea1.tetris.blocks.SquareBlock;
+import com.cozycoding.crea1.tetris.blocks.OBlock;
 
 import java.awt.Dimension;
 
@@ -17,7 +17,7 @@ public class Game implements Runnable {
 
     public Game() {
         gameRules = new GameRules();
-        gameRules.placeBlockOnGameBoard(new SquareBlock());
+        gameRules.placeBlockOnGameBoard(new OBlock());
         Window window = new Window(title, new Dimension(windowWidth, windowHeight));
         gamePanel = new GamePanel(new Dimension(windowWidth, windowHeight));
         gamePanel.addKeyListener(new ArrowKeyListener());
@@ -37,7 +37,7 @@ public class Game implements Runnable {
 
             if (gameRules.hasCrashedWithOtherCells()) {
                 gameRules.stopActiveBlockAndMergeItWithBoard();
-                gameRules.placeBlockOnGameBoard(new SquareBlock());
+                gameRules.placeBlockOnGameBoard(new OBlock());
             } else {
                 gameRules.moveActiveBlockDown();
             }

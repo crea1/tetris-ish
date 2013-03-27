@@ -1,8 +1,5 @@
 package com.cozycoding.crea1.tetris.blocks;
 
-import com.cozycoding.crea1.tetris.blocks.Cell;
-import com.cozycoding.crea1.tetris.blocks.SquareBlock;
-import com.cozycoding.crea1.tetris.blocks.TetrisBlock;
 import org.junit.Test;
 
 import java.util.List;
@@ -12,12 +9,12 @@ import static junit.framework.Assert.assertEquals;
 /**
  * @author Marius Kristensen
  */
-public class SquareBlockTest {
+public class OBlockTest {
 
 
     @Test
     public void testSavingOfXYOnSquareBlock() throws Exception {
-        TetrisBlock squareBlock = new SquareBlock();
+        TetrisBlock squareBlock = new OBlock();
         for (Cell cell : squareBlock.getShape()) {
             cell.setX(99);
             cell.setY(-99);
@@ -30,9 +27,9 @@ public class SquareBlockTest {
 
     @Test
     public void testMoveSquareBlockDown() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        squareBlock.moveDown();
-        List<Cell> shape = squareBlock.getShape();
+        OBlock oBlock = new OBlock();
+        oBlock.moveDown();
+        List<Cell> shape = oBlock.getShape();
         int numberOfCellsWithOneAsY = 0;
         int numberOfCellsWithTwoAsY = 0;
         for (Cell cell : shape) {
@@ -48,11 +45,11 @@ public class SquareBlockTest {
 
     @Test
     public void testMoveSquareLeft() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        squareBlock.moveLeft();
+        OBlock oBlock = new OBlock();
+        oBlock.moveLeft();
         int numberOfCellsWithThreeAsX = 0;
         int numberOfCellsWithFourAsX = 0;
-        List<Cell> shape = squareBlock.getShape();
+        List<Cell> shape = oBlock.getShape();
         for (Cell cell : shape) {
             if (cell.getX() == 3) {
                 numberOfCellsWithThreeAsX++;
@@ -66,11 +63,11 @@ public class SquareBlockTest {
 
     @Test
     public void testMoveSquareRight() throws Exception {
-        SquareBlock squareBlock = new SquareBlock();
-        squareBlock.moveRight();
+        OBlock oBlock = new OBlock();
+        oBlock.moveRight();
         int numberOfCellsWithSixAsX = 0;
         int numberOfCellsWithFiveAsX = 0;
-        List<Cell> shape = squareBlock.getShape();
+        List<Cell> shape = oBlock.getShape();
         for (Cell cell : shape) {
             if (cell.getX() == 5) {
                 numberOfCellsWithFiveAsX++;
