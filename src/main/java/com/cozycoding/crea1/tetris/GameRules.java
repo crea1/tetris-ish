@@ -1,6 +1,7 @@
 package com.cozycoding.crea1.tetris;
 
 import com.cozycoding.crea1.tetris.blocks.Cell;
+import com.cozycoding.crea1.tetris.blocks.LBlock;
 import com.cozycoding.crea1.tetris.blocks.PyramidBlock;
 import com.cozycoding.crea1.tetris.blocks.SquareBlock;
 import com.cozycoding.crea1.tetris.blocks.TetrisBlock;
@@ -48,7 +49,8 @@ public class GameRules {
     }
 
     public void placeBlockOnGameBoard(TetrisBlock tetrisBlock) {
-        this.activeBlock = tetrisBlock;
+        //this.activeBlock = tetrisBlock;
+        this.activeBlock = createRandomBlock();
     }
 
     public TetrisBlock createRandomBlock() {
@@ -56,8 +58,10 @@ public class GameRules {
         int x = random.nextInt(100);
         if (x < 20) {
             return new SquareBlock();
-        } else {
+        } else if (x >= 20 && x < 50) {
             return new PyramidBlock();
+        } else {
+            return new LBlock();
         }
     }
 
