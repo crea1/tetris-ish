@@ -1,11 +1,14 @@
 package com.cozycoding.crea1.tetris;
 
 import com.cozycoding.crea1.tetris.blocks.Cell;
+import com.cozycoding.crea1.tetris.blocks.IBlock;
 import com.cozycoding.crea1.tetris.blocks.JBlock;
 import com.cozycoding.crea1.tetris.blocks.LBlock;
 import com.cozycoding.crea1.tetris.blocks.OBlock;
+import com.cozycoding.crea1.tetris.blocks.SBlock;
 import com.cozycoding.crea1.tetris.blocks.TBlock;
 import com.cozycoding.crea1.tetris.blocks.TetrisBlock;
+import com.cozycoding.crea1.tetris.blocks.ZBlock;
 
 import java.util.Random;
 
@@ -54,17 +57,24 @@ public class GameRules {
         this.activeBlock = createRandomBlock();
     }
 
+    // TODO rewrite this to use random bags with random 7 pieces.
     public TetrisBlock createRandomBlock() {
         Random random = new Random();
         int x = random.nextInt(100);
-        if (x < 20) {
+        if (x < 15) {
             return new OBlock();
-        } else if (x >= 20 && x < 50) {
+        } else if (x >= 15 && x < 30) {
             return new TBlock();
-        } else if (x >= 50 && x < 80) {
+        } else if (x >= 30 && x < 45) {
             return new JBlock();
-        } else {
+        } else if (x >=45 && x < 60) {
             return new LBlock();
+        } else if (x >= 60 && x < 75) {
+            return new SBlock();
+        } else if (x >= 75 && x < 90) {
+            return new ZBlock();
+        } else {
+            return new IBlock();
         }
     }
 

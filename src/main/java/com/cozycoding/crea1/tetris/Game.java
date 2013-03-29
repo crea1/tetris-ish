@@ -36,6 +36,7 @@ public class Game implements Runnable {
             }
 
             if (gameRules.hasCrashedWithOtherCells()) {
+                //TODO Check for filled lines
                 gameRules.stopActiveBlockAndMergeItWithBoard();
                 gameRules.placeBlockOnGameBoard(new OBlock());
             } else {
