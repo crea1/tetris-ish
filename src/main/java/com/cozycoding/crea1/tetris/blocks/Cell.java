@@ -9,7 +9,7 @@ public class Cell {
     private boolean isFilled;
     private int x;
     private int y;
-    private Color color = new Color(0xCCCCCC);
+    private Color color = new Color(0xFFFFFF);
 
     public Cell(boolean filled, int x, int y, Color color) {
         isFilled = filled;
