@@ -10,7 +10,9 @@ import com.cozycoding.crea1.tetris.blocks.TBlock;
 import com.cozycoding.crea1.tetris.blocks.TetrisBlock;
 import com.cozycoding.crea1.tetris.blocks.ZBlock;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * @author Marius Kristensen
@@ -44,6 +46,31 @@ public class GameRules {
         return true;
     }
 
+    public int removeFilledLines() {
+        Set<Integer> rowsFilled = new HashSet<>();
+        for (int row = 0; row < gameBoard.length; row++) {
+            if (isRowFilled(gameBoard[row])) {
+                rowsFilled.add(row);
+                System.out.println("Row that's filled = " + row);
+                //gameBoard[row] = fillCellRowWithEmptyCells(new Cell[noOfColumns], row);
+                for (int row2 = gameBoard.length - 1; row2 > 0; row2--) {
+                    if (row2 <= row) {
+                        Cell[] cells = gameBoard[row2];
+                        Cell[] cellsAbove = gameBoard[row2 - 1];
+                        for (Cell cell : cellsAbove) {
+                            cell.setY(cell.getY() + 1);
+                        }
+                        System.out.println("Row" + (row2 - 1) + "is moved to row " + row2);
+                        gameBoard[row2] = cellsAbove;
+                    }
+                }
+                Cell[] cells = fillCellRowWithEmptyCells(new Cell[noOfColumns], 0);
+                gameBoard[0] = cells;
+            }
+        }
+        return rowsFilled.size();
+    }
+
     public Cell[] fillCellRowWithEmptyCells(Cell[] cells, int row) {
         for (int i = 0; i < cells.length; i++) {
             Cell cell = new Cell(false, i, row);
@@ -52,9 +79,12 @@ public class GameRules {
         return cells;
     }
 
+    public void placeBlockOnGameBoard() {
+        placeBlockOnGameBoard(createRandomBlock());
+    }
+
     public void placeBlockOnGameBoard(TetrisBlock tetrisBlock) {
-        //this.activeBlock = tetrisBlock;
-        this.activeBlock = createRandomBlock();
+        this.activeBlock = tetrisBlock;
     }
 
     // TODO rewrite this to use random bags with random 7 pieces.
