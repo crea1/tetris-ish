@@ -32,4 +32,13 @@ public class GameBoard {
     public Cell[][] getGameBoard() {
         return gameBoard;
     }
+
+    public boolean isRowFilled(Cell[] cells) {
+        for (Cell cell : cells) {
+            if (!cell.isFilled()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

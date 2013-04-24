@@ -16,7 +16,7 @@ public class GameRules {
     public static final int noOfRows = 18;
 
 
-    private final GameBoard gameBoardz;
+    final GameBoard gameBoardz;
     private Cell[][] gameBoard;
     private TetrisBlock activeBlock;
     private final RandomBagGenerator randomBagGenerator;
@@ -32,26 +32,14 @@ public class GameRules {
     }
 
 
-
-    public boolean isRowFilled(Cell[] cells) {
-        for (Cell cell : cells) {
-            if (!cell.isFilled()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public int removeFilledLines() {
         Set<Integer> rowsFilled = new HashSet<>();
         for (int row = 0; row < gameBoard.length; row++) {
-            if (isRowFilled(gameBoard[row])) {
+            if (gameBoardz.isRowFilled(gameBoard[row])) {
                 rowsFilled.add(row);
                 System.out.println("Row that's filled = " + row);
-                //gameBoard[row] = fillCellRowWithEmptyCells(new Cell[noOfColumns], row);
                 for (int row2 = gameBoard.length - 1; row2 > 0; row2--) {
                     if (row2 <= row) {
-                        Cell[] cells = gameBoard[row2];
                         Cell[] cellsAbove = gameBoard[row2 - 1];
                         for (Cell cell : cellsAbove) {
                             cell.setY(cell.getY() + 1);

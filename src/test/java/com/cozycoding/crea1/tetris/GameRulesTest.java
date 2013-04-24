@@ -27,27 +27,27 @@ public class GameRulesTest {
     @Test
     public void testGameBoardIsFilledWithEmptyCells() throws Exception {
         for (int row = 0; row < gameRules.getGameBoard().length; row++) {
-            assertFalse(gameRules.isRowFilled(gameRules.getGameBoard()[row]));
+            assertFalse(gameRules.gameBoardz.isRowFilled(gameRules.getGameBoard()[row]));
         }
     }
 
     @Test
     public void testGameBoardFullOfEmptyRowsOnGameStart() {
         for (Cell[] row : gameRules.getGameBoard()) {
-            assertFalse(gameRules.isRowFilled(row));
+            assertFalse(gameRules.gameBoardz.isRowFilled(row));
         }
     }
 
     @Test
     public void testRowIsFilledReturnTrue() throws Exception {
         Cell[] cellRow = {filledCell, filledCell, filledCell, filledCell};
-        assertTrue(gameRules.isRowFilled(cellRow));
+        assertTrue(gameRules.gameBoardz.isRowFilled(cellRow));
     }
 
     @Test
     public void testOneRowIsNotFilledReturnsFalse() throws Exception {
         Cell[] cellRow = {filledCell, emptyCell, filledCell, filledCell};
-        assertFalse(gameRules.isRowFilled(cellRow));
+        assertFalse(gameRules.gameBoardz.isRowFilled(cellRow));
     }
 
     @Test
