@@ -56,11 +56,11 @@ public class GameRulesTest {
         gameRules.placeBlockOnGameBoard(oBlock);
         while (!gameRules.isActiveBlockAtBottom()) {
             gameRules.getActiveBlock().moveDown();
-            if (gameRules.getActiveBlock().getShape().get(3).getY() == gameRules.noOfRows) {
+            if (gameRules.getActiveBlock().getShape().get(3).getY() == GameRules.noOfRows) {
                 fail();
             }
         }
-        assertEquals(gameRules.noOfRows-1, gameRules.getActiveBlock().getShape().get(3).getY());
+        assertEquals(GameRules.noOfRows -1, gameRules.getActiveBlock().getShape().get(3).getY());
     }
 
     @Test
@@ -82,11 +82,11 @@ public class GameRulesTest {
         gameRules.placeBlockOnGameBoard(oBlock);
         while (!gameRules.isActiveBlockAtRightWall()) {
             gameRules.getActiveBlock().moveRight();
-            if (gameRules.getActiveBlock().getShape().get(1).getX() == gameRules.noOfColumns) {
+            if (gameRules.getActiveBlock().getShape().get(1).getX() == GameRules.noOfColumns) {
                 fail();
             }
         }
-        assertEquals(gameRules.noOfColumns - 1, gameRules.getActiveBlock().getShape().get(2).getX());
+        assertEquals(GameRules.noOfColumns - 1, gameRules.getActiveBlock().getShape().get(2).getX());
     }
 
     @Test
@@ -165,8 +165,8 @@ public class GameRulesTest {
         for (int i = 0; i < gameBoard.length; i++) {
             System.out.print("\n"+ i +"|");
             Cell[] row = gameBoard[i];
-            for (int j = 0; j < row.length; j++) {
-                if (row[j].isFilled()) {
+            for (Cell column : row) {
+                if (column.isFilled()) {
                     System.out.print("#");
                 } else {
                     System.out.print(" ");
