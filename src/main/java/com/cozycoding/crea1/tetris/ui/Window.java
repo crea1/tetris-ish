@@ -1,4 +1,4 @@
-package com.cozycoding.crea1.tetris;
+package com.cozycoding.crea1.tetris.ui;
 
 import javax.swing.JFrame;
 import java.awt.Dimension;

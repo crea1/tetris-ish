@@ -1,6 +1,8 @@
 package com.cozycoding.crea1.tetris;
 
-import com.cozycoding.crea1.tetris.blocks.OBlock;
+import com.cozycoding.crea1.tetris.ui.ArrowKeyListener;
+import com.cozycoding.crea1.tetris.ui.GamePanel;
+import com.cozycoding.crea1.tetris.ui.Window;
 
 import java.awt.Dimension;
 

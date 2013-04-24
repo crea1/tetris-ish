@@ -1,4 +1,4 @@
-package com.cozycoding.crea1.tetris;
+package com.cozycoding.crea1.tetris.ui;
 
 import com.cozycoding.crea1.tetris.blocks.Cell;
 import com.cozycoding.crea1.tetris.blocks.TetrisBlock;

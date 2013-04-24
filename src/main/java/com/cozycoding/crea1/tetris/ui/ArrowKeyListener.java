@@ -1,4 +1,6 @@
-package com.cozycoding.crea1.tetris;
+package com.cozycoding.crea1.tetris.ui;
+
+import com.cozycoding.crea1.tetris.Game;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
