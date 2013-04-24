@@ -15,26 +15,23 @@ public class GameRules {
     public static final int noOfColumns = 10;
     public static final int noOfRows = 18;
 
-    private Cell[][] gameBoard = new Cell[noOfRows][];
+
+    private final GameBoard gameBoardz;
+    private Cell[][] gameBoard;
     private TetrisBlock activeBlock;
     private final RandomBagGenerator randomBagGenerator;
     private int currentBagBlockNumberPosition = 0;
     private List<TetrisBlock> bigBagOfBlocks;
 
     public GameRules() {
-        fillGameBoardWithEmptyRows(gameBoard);
+        gameBoardz = new GameBoard();
+        this.gameBoard = gameBoardz.getGameBoard();
         randomBagGenerator = new RandomBagGenerator();
         bigBagOfBlocks = randomBagGenerator.createNewBag();
         placeBlockOnGameBoard();
     }
 
-    public void fillGameBoardWithEmptyRows(Cell[][] gameBoard) {
-        Cell[][] board = new Cell[gameBoard.length][];
-        for (int row = 0; row < gameBoard.length; row++) {
-            board[row] = fillCellRowWithEmptyCells(new Cell[noOfColumns], row);
-        }
-        this.gameBoard = board;
-    }
+
 
     public boolean isRowFilled(Cell[] cells) {
         for (Cell cell : cells) {
@@ -63,19 +60,11 @@ public class GameRules {
                         gameBoard[row2] = cellsAbove;
                     }
                 }
-                Cell[] cells = fillCellRowWithEmptyCells(new Cell[noOfColumns], 0);
+                Cell[] cells = gameBoardz.fillCellRowWithEmptyCells(new Cell[noOfColumns], 0);
                 gameBoard[0] = cells;
             }
         }
         return rowsFilled.size();
-    }
-
-    public Cell[] fillCellRowWithEmptyCells(Cell[] cells, int row) {
-        for (int i = 0; i < cells.length; i++) {
-            Cell cell = new Cell(false, i, row);
-            cells[i] = cell;
-        }
-        return cells;
     }
 
     public void placeBlockOnGameBoard() {

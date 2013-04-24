@@ -33,8 +33,9 @@ public class GameRulesTest {
 
     @Test
     public void testGameBoardFullOfEmptyRowsOnGameStart() {
-        Cell[] emptyCells = gameRules.fillCellRowWithEmptyCells(new Cell[8], 0);
-        assertFalse(gameRules.isRowFilled(emptyCells));
+        for (Cell[] row : gameRules.getGameBoard()) {
+            assertFalse(gameRules.isRowFilled(row));
+        }
     }
 
     @Test
