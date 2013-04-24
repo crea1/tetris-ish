@@ -17,7 +17,6 @@ public class Game implements Runnable {
 
     public Game() {
         gameRules = new GameRules();
-        gameRules.placeBlockOnGameBoard(new OBlock());
         Window window = new Window(title, new Dimension(windowWidth, windowHeight));
         gamePanel = new GamePanel(new Dimension(windowWidth, windowHeight));
         gamePanel.addKeyListener(new ArrowKeyListener());

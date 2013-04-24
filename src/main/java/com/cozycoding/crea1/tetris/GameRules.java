@@ -1,17 +1,10 @@
 package com.cozycoding.crea1.tetris;
 
 import com.cozycoding.crea1.tetris.blocks.Cell;
-import com.cozycoding.crea1.tetris.blocks.IBlock;
-import com.cozycoding.crea1.tetris.blocks.JBlock;
-import com.cozycoding.crea1.tetris.blocks.LBlock;
-import com.cozycoding.crea1.tetris.blocks.OBlock;
-import com.cozycoding.crea1.tetris.blocks.SBlock;
-import com.cozycoding.crea1.tetris.blocks.TBlock;
 import com.cozycoding.crea1.tetris.blocks.TetrisBlock;
-import com.cozycoding.crea1.tetris.blocks.ZBlock;
 
 import java.util.HashSet;
-import java.util.Random;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,9 +17,15 @@ public class GameRules {
 
     private Cell[][] gameBoard = new Cell[noOfRows][];
     private TetrisBlock activeBlock;
+    private final RandomBagGenerator randomBagGenerator;
+    private int currentBagBlockNumberPosition = 0;
+    private List<TetrisBlock> bigBagOfBlocks;
 
     public GameRules() {
         fillGameBoardWithEmptyRows(gameBoard);
+        randomBagGenerator = new RandomBagGenerator();
+        bigBagOfBlocks = randomBagGenerator.createNewBag();
+        placeBlockOnGameBoard();
     }
 
     public void fillGameBoardWithEmptyRows(Cell[][] gameBoard) {
@@ -87,25 +86,15 @@ public class GameRules {
         this.activeBlock = tetrisBlock;
     }
 
-    // TODO rewrite this to use random bags with random 7 pieces.
     public TetrisBlock createRandomBlock() {
-        Random random = new Random();
-        int x = random.nextInt(100);
-        if (x < 15) {
-            return new OBlock();
-        } else if (x >= 15 && x < 30) {
-            return new TBlock();
-        } else if (x >= 30 && x < 45) {
-            return new JBlock();
-        } else if (x >=45 && x < 60) {
-            return new LBlock();
-        } else if (x >= 60 && x < 75) {
-            return new SBlock();
-        } else if (x >= 75 && x < 90) {
-            return new ZBlock();
-        } else {
-            return new IBlock();
+        TetrisBlock tetrisBlock = bigBagOfBlocks.get(currentBagBlockNumberPosition);
+        currentBagBlockNumberPosition++;
+        if (currentBagBlockNumberPosition > 6) {
+            bigBagOfBlocks = randomBagGenerator.createNewBag();
+            currentBagBlockNumberPosition = 0;
         }
+        // System.out.println("Next Block: " + bigBagOfBlocks.get(currentBagBlockNumberPosition));
+        return tetrisBlock;
     }
 
     public synchronized void moveActiveBlockDown() {
