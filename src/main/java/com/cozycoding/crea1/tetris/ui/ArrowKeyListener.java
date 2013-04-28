@@ -15,16 +15,16 @@ public class ArrowKeyListener extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent keyEvent) {
             switch (keyEvent.getKeyCode()) {
-                case 37:
+                case KeyEvent.VK_LEFT:
                     Game.getGameRules().moveActiveBlockLeft();
                     break;
-                case 38:
+                case KeyEvent.VK_UP:
                     Game.getGameRules().rotateActiveBlock();
                     break;
-                case 39:
+                case KeyEvent.VK_RIGHT:
                     Game.getGameRules().moveActiveBlockRight();
                     break;
-                case 40:
+                case KeyEvent.VK_DOWN:
                     Game.getGameRules().moveActiveBlockDown();
                     break;
             }
