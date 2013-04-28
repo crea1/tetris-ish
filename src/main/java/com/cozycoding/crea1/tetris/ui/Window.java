@@ -19,8 +19,9 @@ public class Window extends JFrame {
         this.setVisible(true);
     }
 
-    public void addGamePanelAndSetVisible(GamePanel gamePanel) {
-        getContentPane().add(gamePanel, BorderLayout.CENTER);
+    public void addGamePanelAndSetVisible(GamePanel gamePanel, ScorePanel scorePanel) {
+        getContentPane().add(gamePanel, BorderLayout.WEST);
+        getContentPane().add(scorePanel, BorderLayout.EAST);
         pack();
         setVisible(true);
     }
