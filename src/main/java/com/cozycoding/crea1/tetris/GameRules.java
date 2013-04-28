@@ -55,12 +55,16 @@ public class GameRules {
         return rowsFilled.size();
     }
 
-    public void placeBlockOnGameBoard() {
-        placeBlockOnGameBoard(createRandomBlock());
+    public boolean placeBlockOnGameBoard() {
+        return placeBlockOnGameBoard(createRandomBlock());
     }
 
-    public void placeBlockOnGameBoard(TetrisBlock tetrisBlock) {
+    public boolean placeBlockOnGameBoard(TetrisBlock tetrisBlock) {
         this.activeBlock = tetrisBlock;
+        if (hasCrashedWithOtherCells()) {
+            return false;
+        }
+        return true;
     }
 
     public TetrisBlock createRandomBlock() {

@@ -41,7 +41,10 @@ public class Game implements Runnable {
 
                 gameRules.removeFilledLines();
 
-                gameRules.placeBlockOnGameBoard();
+                if (!gameRules.placeBlockOnGameBoard()) {
+                    //Game Over
+                    gameRules = new GameRules();
+                }
             } else {
                 gameRules.moveActiveBlockDown();
             }
