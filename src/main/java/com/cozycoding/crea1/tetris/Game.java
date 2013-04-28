@@ -4,6 +4,7 @@ import com.cozycoding.crea1.tetris.ui.ArrowKeyListener;
 import com.cozycoding.crea1.tetris.ui.GamePanel;
 import com.cozycoding.crea1.tetris.ui.Window;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 /**
@@ -23,7 +24,7 @@ public class Game implements Runnable {
         gamePanel = new GamePanel(new Dimension(windowWidth, windowHeight));
         gamePanel.addKeyListener(new ArrowKeyListener());
         gamePanel.paintGameBoard(gameRules.getGameBoard(), gameRules.getActiveBlock());
-        window.add(gamePanel);
+        window.addGamePanelAndSetVisible(gamePanel);
 
     }
 
